@@ -1,95 +1,46 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+const taskInput = document.getElementById("task-input");
+const addTaskBtn = document.getElementById("add-task-btn");
+const taskList = document.getElementById("task-list");
+
+// Add task function
+function addTask() {
+    const taskText = taskInput.value.trim();
+
+    if (taskText === "") {
+        alert("Please enter a task!");
+        return;
+    }
+
+    const taskItem = document.createElement("li");
+    taskItem.className = "task-item";
+
+    taskItem.innerHTML =
+        <span>${taskText}</span>
+        <div class="task-buttons">
+            <button class="complete-btn">Complete</button>
+            <button class="delete-btn">Delete</button>
+        </div>
+    `;
+
+    // Add event listeners to buttons
+    taskItem.querySelector(".complete-btn").addEventListener("click", () => {
+        taskItem.classList.toggle("completed");
+    });
+
+    taskItem.querySelector(".delete-btn").addEventListener("click", () => {
+        taskItem.remove();
+    });
+
+    taskList.appendChild(taskItem);
+    taskInput.value = "";
 }
 
-.container {
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 20px 30px;
-    width: 100%;
-    max-width: 400px;
-}
+// Add event listener to "Add Task" button
+addTaskBtn.addEventListener("click", addTask);
 
-h1 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #333;
-}
-#task-input {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-right: 10px;
-    font-size: 16px;
-}
-
-#add-task-btn {
-    padding: 10px 20px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-#add-task-btn:hover {
-    background-color: #218838;
-}
-
-#task-list {
-    list-style: none;
-    padding: 0;
-}
-
-.task-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #f9f9f9;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.task-item.completed {
-    text-decoration: line-through;
-    color: #888;
-}
-
-.task-buttons button {
-    margin-left: 5px;
-    padding: 5px 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-.complete-btn {
-    background-color: #007bff;
-    color: white;
-}
-
-.complete-btn:hover {
-    background-color: #0056b3;
-}
-
-.delete-btn {
-    background-color: #dc3545;
-    color: white;
-}
-
-.delete-btn:hover {
-    background-color: #c82333;
-}
+// Add task on pressing Enter key
+taskInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+        addTask();
+    }
+});
