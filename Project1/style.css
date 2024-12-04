@@ -23,6 +23,13 @@ h1 {
     margin-bottom: 20px;
     color: #333;
 }
+
+.input-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
 #task-input {
     flex: 1;
     padding: 10px;
