@@ -14,7 +14,7 @@ function addTask() {
     const taskItem = document.createElement("li");
     taskItem.className = "task-item";
 
-    taskItem.innerHTML =
+    taskItem.innerHTML =`
         <span>${taskText}</span>
         <div class="task-buttons">
             <button class="complete-btn">Complete</button>
